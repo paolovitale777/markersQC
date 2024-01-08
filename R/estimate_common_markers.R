@@ -11,12 +11,12 @@
 #' @examples estimate_common_markers(markers, crosses)
 estimate_common_markers <- function(marker_data, specific_lines_df) {
   result <- specific_lines_df
-  colnames(result) <- c("GID", "F_GID", "M_GID")  # To ensure consistent column names
+  colnames(result) <- c("Offspring", "parent_1", "parent_2")  # To ensure consistent column names
 
   for (i in 1:nrow(specific_lines_df)) {
-    offspring <- as.character(specific_lines_df[i, "GID"])
-    parent1 <- as.character(specific_lines_df[i, "F_GID"])
-    parent2 <- as.character(specific_lines_df[i, "M_GID"])
+    offspring <- as.character(specific_lines_df[i, "Offspring"])
+    parent1 <- as.character(specific_lines_df[i, "parent_1"])
+    parent2 <- as.character(specific_lines_df[i, "parent_2"])
 
     offspring_markers <- marker_data[[offspring]]
     parent1_markers <- marker_data[[parent1]]
