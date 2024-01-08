@@ -14,28 +14,28 @@ estimate_common_markers <- function(marker_data, specific_lines_df) {
   colnames(result) <- c("GID", "F_GID", "M_GID")  # To ensure consistent column names
 
   for (i in 1:nrow(specific_lines_df)) {
-    son <- as.character(specific_lines_df[i, "GID"])
+    offspring <- as.character(specific_lines_df[i, "GID"])
     parent1 <- as.character(specific_lines_df[i, "F_GID"])
     parent2 <- as.character(specific_lines_df[i, "M_GID"])
 
-    son_markers <- marker_data[[son]]
+    offspring_markers <- marker_data[[offspring]]
     parent1_markers <- marker_data[[parent1]]
     parent2_markers <- marker_data[[parent2]]
 
     # Find rows with both columns having non-"N" values
-    rows_with_no_N_values1 <- which(son_markers != "N" & parent1_markers != "N")
-    rows_with_no_N_values2 <- which(son_markers != "N" & parent2_markers != "N")
+    rows_with_no_N_values1 <- which(offspring_markers != "N" & parent1_markers != "N")
+    rows_with_no_N_values2 <- which(offspring_markers != "N" & parent2_markers != "N")
     rows_with_no_N_values3 <- which(parent1_markers != "N" & parent2_markers != "N")
 
     # Get the common elements for rows with non-"N" values in both columns
-    son_parent1_common <- if (length(rows_with_no_N_values1) > 0) {
-      sum(mapply(count_common_elements, son_markers[rows_with_no_N_values1], parent1_markers[rows_with_no_N_values1]))
+    offspring_parent1_common <- if (length(rows_with_no_N_values1) > 0) {
+      sum(mapply(count_common_elements, offspring_markers[rows_with_no_N_values1], parent1_markers[rows_with_no_N_values1]))
     } else {
       NA
     }
 
-    son_parent2_common <- if (length(rows_with_no_N_values2) > 0) {
-      sum(mapply(count_common_elements, son_markers[rows_with_no_N_values2], parent2_markers[rows_with_no_N_values2]))
+    offspring_parent2_common <- if (length(rows_with_no_N_values2) > 0) {
+      sum(mapply(count_common_elements, offspring_markers[rows_with_no_N_values2], parent2_markers[rows_with_no_N_values2]))
     } else {
       NA
     }
@@ -51,10 +51,10 @@ estimate_common_markers <- function(marker_data, specific_lines_df) {
     total_rows_considered2 <- length(rows_with_no_N_values2)
     total_rows_considered3 <- length(rows_with_no_N_values3)
 
-    result[i, "Son_Parent1_total"] <- total_rows_considered1
-    result[i, "Son_Parent1_Common"] <- son_parent1_common
-    result[i, "Son_Parent2_total"] <- total_rows_considered2
-    result[i, "Son_Parent2_Common"] <- son_parent2_common
+    result[i, "offspring_Parent1_total"] <- total_rows_considered1
+    result[i, "offspring_Parent1_Common"] <- offspring_parent1_common
+    result[i, "offspring_Parent2_total"] <- total_rows_considered2
+    result[i, "offspring_Parent2_Common"] <- offspring_parent2_common
     result[i, "Parent1_Parent2_total"] <- total_rows_considered3
     result[i, "parent1_parent2_common"] <- parent1_parent2_common
   }
