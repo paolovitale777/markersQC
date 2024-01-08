@@ -9,6 +9,7 @@ Here, is provided the code for running markersQC.
 #Install and load remotes
 
 install.packages("remotes")
+
 library(remotes)
 
 #install markersQC
@@ -18,6 +19,7 @@ remotes::install_github("paolovitale777/markersQC")
 #Load the datasets
 
 data(crosses)
+
 data(hpm)
 
 #Run the function "estimate_common_markers" to calculate the similarity between offspring and parent 1 and 2
