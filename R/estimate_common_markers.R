@@ -1,6 +1,6 @@
 #' Common markers estimation
 #'
-#' Estimate the number of common markers between offspring and parent 1 or parent 2
+#' Estimate the number of common markers between offspring and parent 1 or parent 2.
 #'
 #' @param marker_data Hapmap with SNP markers information (letters)
 #' @param specific_lines_df Dataframe with three columns 1) offspring, 2) parent 1, and 3) parent 2
