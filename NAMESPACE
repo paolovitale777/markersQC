@@ -1,1 +1,3 @@
 exportPattern("^[[:alpha:]]+")
+export(crosses)
+export(hpm)
