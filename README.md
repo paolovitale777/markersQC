@@ -12,19 +12,25 @@ install.packages("remotes")
 
 library(remotes)
 
-#install markersQC
+#install and load markersQC
 
 remotes::install_github("paolovitale777/markersQC")
+
+library(markersQC)
 
 #Load the datasets
 
 data(crosses)
 
+head(crosses)
+
 data(hpm)
+
+head(hpm)
 
 #Run the function "estimate_common_markers" to calculate the similarity between offspring and parent 1 and 2
 
-results_df <- estimate_common_markers(markers, crosses)
+results_df <- estimate_common_markers(hpm, crosses)
 
 #Parental contribution estimation
 
